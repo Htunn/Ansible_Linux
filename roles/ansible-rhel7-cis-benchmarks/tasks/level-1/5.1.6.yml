@@ -1,0 +1,30 @@
+# Standards: 0.11
+---
+
+# 5.1.6 Ensure permissions on /etc/cron.monthly are configured
+
+- name: 5.1.6 - Ensure permissions on /etc/cron.monthly are configured
+  file:
+    path: "/etc/cron.monthly"
+    owner: root
+    group: root
+    mode: 0600
+  when: rollback is not defined
+  tags:
+    - level-1
+    - section-6
+    - "5.1.6"
+    - scored
+
+- name: 5.1.6 - (rollback)Ensure permissions on /etc/cron.monthly are configured
+  file:
+    path: "/etc/cron.monthly"
+    owner: root
+    group: root
+    mode: 0755
+  when: rollback is defined
+  tags:
+    - level-1
+    - section-6
+    - "5.1.6"
+    - scored

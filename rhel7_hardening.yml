@@ -1,0 +1,36 @@
+---
+- hosts: all
+  become: yes
+  vars_files:
+    - vars/rhel_cis_vars.yml
+  roles:
+    - role: ansible-rhel7-cis-benchmarks
+
+#  tasks:
+#    - name: Unset password expiration for root user
+#      shell: "chage --maxdays 99999 root"
+#      changed_when: false
+#
+#    - name: create motd
+#      copy:
+#        content: "CAMBODIA POST BANK - AUTHORIZED USE ONLY\n"
+#        dest: /etc/motd
+#        owner: root
+#        group: root
+#        mode: '0644'
+#
+#    - name: create banner
+#      copy:
+#        content: "Authorized uses only. All activity may be monitored and reported.\n"
+#        dest: /etc/issue
+#        owner: root
+#        group: root
+#        mode: '0644'
+#
+#    - name: create issue.net
+#      copy:
+#        src: issue.net
+#        dest: /etc/issue.net
+#        owner: root
+#        group: root
+#        mode: '0644'

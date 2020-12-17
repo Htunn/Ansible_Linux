@@ -1,0 +1,7 @@
+---
+ubuntu1804cis_apply_upgrades: false
+ubuntu1804cis_auditd:
+  admin_space_left_action: halt
+  max_log_file_action: keep_logs
+  max_audit_log_file_size: 1000
+  backlog_limit: "8192"

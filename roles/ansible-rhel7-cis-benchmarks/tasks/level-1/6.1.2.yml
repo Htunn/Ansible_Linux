@@ -1,0 +1,17 @@
+# Standards: 0.11
+---
+
+# 6.1.2 Ensure permissions on /etc/passwd are configured
+
+- name: 6.1.2 - Ensure permissions on /etc/passwd are configured
+  file:
+    path: /etc/passwd
+    owner: root
+    group: root
+    mode: 0644
+  when: rollback is not defined
+  tags:
+    - level-1
+    - section-6
+    - "6.1.2"
+    - scored

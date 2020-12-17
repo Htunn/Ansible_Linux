@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become: yes
+  vars_files:
+    - vars/ubuntu_cis_vars.yml
+    - vars/ubuntu_cis_section1.yml
+    - vars/ubuntu_cis_section2.yml
+    - vars/ubuntu_cis_section3.yml
+    - vars/ubuntu_cis_section4.yml
+    - vars/ubuntu_cis_section5.yml
+    - vars/ubuntu_cis_section6.yml
+  roles:
+    - role: Ubuntu1804-CIS
+
+#  tasks:
+#    - name: create motd
+#      copy:
+#        content: "CAMBODIA POST BANK - AUTHORIZED USE ONLY\n"
+#        dest: /etc/motd
+#        owner: root
+#        group: root
+#        mode: '0644'
+#
+#    - name: create banner
+#      copy:
+#        content: "Authorized uses only. All activity may be monitored and reported.\n"
+#        dest: /etc/issue
+#        owner: root
+#        group: root
+#        mode: '0644'
+#
+#    - name: create issue.net
+#      copy:
+#        src: issue.net
+#        dest: /etc/issue.net
+#        owner: root
+#        group: root
+#        mode: '0644'

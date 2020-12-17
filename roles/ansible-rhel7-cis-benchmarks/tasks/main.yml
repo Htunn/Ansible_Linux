@@ -1,0 +1,17 @@
+# Standards: 0.11
+---
+
+- include: preflight.yml
+  when: cis_apply_level_1_profile or cis_apply_level_2_profile
+
+#- include: "level-1.yml"
+#  become: yes
+#  when: cis_apply_level_1_profile
+
+#- include: "level-2.yml"
+#  become: yes
+#  when: cis_apply_level_2_profile
+
+- include: cpb-rhel7-cis.yml
+  become: yes
+  when: cis_apply_level_1_profile or cis_apply_level_2_profile

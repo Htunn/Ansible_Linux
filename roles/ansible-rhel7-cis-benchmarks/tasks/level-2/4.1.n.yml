@@ -1,0 +1,52 @@
+# Standards: 1.1.28
+---
+
+# 4.1.4 - 4.1.17- Ensure the audit.rules file is configured
+
+- name: 4.1.n - (rollback)Install or update auditd.rules file
+  copy:
+    src: /etc/audit/rules.d/audit.rules
+    dest: /tmp/
+    owner: root 
+    group: root
+    mode: 'preserve'
+    remote_src: true
+  when: rollback is not defined
+  tags:
+    - level-2
+    - section-4
+    - "4.1.n"
+    - scored
+
+- name: 4.1.n - Install or update audit.rules file
+  template:
+    src: templates/audit.rules.j2
+    dest: /etc/audit/rules.d/audit.rules
+    mode: 0600
+    owner: root
+    group: root
+    backup: true
+  when: rollback is not defined
+  notify:
+    - Restart auditd
+  tags:
+    - level-2
+    - section-4
+    - "4.1.n"
+    - scored
+
+
+- name: 4.1.n - (rollback)Install or update auditd.conf file
+  copy:
+    src: /tmp/audit.rules
+    dest: /etc/audit/rules.d/audit.rules
+    owner: root 
+    group: root
+    mode: 'preserve'
+    remote_src: true
+  when: rollback is defined
+  tags:
+    - level-2
+    - section-4
+    - "4.1.n"
+    - scored

@@ -1,0 +1,69 @@
+# Standards: 0.11
+---
+
+# 5.2.16 - Ensure SSH warning banner is configured
+
+- include: stat_sshd_config.yml
+  tags:
+    - level-1
+    - section-5
+    - "5.2.16"
+    - scored
+
+- name: 5.2.16 - (rollback)Ensure SSH warning banner is configured
+  copy:
+    src: /etc/issue.net
+    dest: /tmp/
+    owner: root 
+    group: root 
+    mode: 'preserve'
+    remote_src: yes
+  when: rollback is not defined
+  tags:
+    - level-1
+    - section-5
+    - "5.2.16"
+    - scored
+
+- name: 5.2.16 - Ensure SSH warning banner is configured
+  lineinfile:
+    regexp: "^Banner\\s+"
+    line: "Banner {{ cis_sshd_banner }}"
+    dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists and rollback is not defined
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - "5.2.16"
+    - scored
+
+- name: 5.2.16 - (rollback)Ensure SSH warning banner is configured
+  copy:
+    src: /tmp/issue.net
+    dest: /etc/issue.net
+    owner: root 
+    group: root 
+    mode: 'preserve'
+    remote_src: yes
+  when: rollback is defined
+  tags:
+    - level-1
+    - section-5
+    - "5.2.16"
+    - scored
+
+- name: 5.2.16 - (rollback)Ensure SSH warning banner is configured
+  lineinfile:
+    regexp: "^Banner\\s+"
+    line: "#Banner {{ cis_sshd_banner }}"
+    dest: "/etc/ssh/sshd_config"
+  when: rollback is defined
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - "5.2.16"
+    - scored
