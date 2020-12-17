@@ -1,10 +1,10 @@
 ---
 - hosts: all 
   become: yes
-  vars:
-    proxy_env:
-      http_proxy: "http://{{ proxy }}:{{ proxy_port }}"
-      https_proxy: "http://{{ proxy }}:{{ proxy_port }}"
+#  vars:
+#    proxy_env:
+#      http_proxy: "http://{{ proxy }}:{{ proxy_port }}"
+#      https_proxy: "http://{{ proxy }}:{{ proxy_port }}"
   vars_files:
     - vars/rhel_cis_vars.yml
   roles:
@@ -18,7 +18,7 @@
 
     - name: create motd
       copy:
-        content: "CAMBODIA POST BANK - AUTHORIZED USE ONLY\n"
+        content: "AUTHORIZED USE ONLY\n"
         dest: /etc/motd
         owner: root
         group: root
