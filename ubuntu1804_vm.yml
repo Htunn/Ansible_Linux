@@ -12,27 +12,27 @@
   roles:
     - role: Ubuntu1804-CIS
 
-#  tasks:
-#    - name: create motd
-#      copy:
-#        content: "AUTHORIZED USE ONLY\n"
-#        dest: /etc/motd
-#        owner: root
-#        group: root
-#        mode: '0644'
-#
-#    - name: create banner
-#      copy:
-#        content: "Authorized uses only. All activity may be monitored and reported.\n"
-#        dest: /etc/issue
-#        owner: root
-#        group: root
-#        mode: '0644'
-#
-#    - name: create issue.net
-#      copy:
-#        src: issue.net
-#        dest: /etc/issue.net
-#        owner: root
-#        group: root
-#        mode: '0644'
+  tasks:
+    - name: create motd
+      copy:
+        content: "AUTHORIZED USE ONLY\n"
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: create banner
+      copy:
+        content: "Authorized uses only. All activity may be monitored and reported.\n"
+        dest: /etc/issue
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: create issue.net
+      copy:
+        src: issue.net
+        dest: /etc/issue.net
+        owner: root
+        group: root
+        mode: '0644'
